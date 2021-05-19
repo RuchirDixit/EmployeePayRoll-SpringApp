@@ -38,7 +38,7 @@ public class EmployeePayRollController {
 	}
 	
 	@GetMapping("/get/{id}")
-	public ResponseEntity<ResponseDTO> getEmployeePayRollDataById(@PathVariable long id){
+	public ResponseEntity<ResponseDTO> getEmployeePayRollDataById(@PathVariable int id){
 		logger.debug("Inside get employee data by id");
 		EmployeePayrollData employeeData = employeePayService.getEmployeePayRollDataById(id);
 		ResponseDTO responseDTO = new ResponseDTO("Get Employee Response",employeeData);
@@ -53,10 +53,10 @@ public class EmployeePayRollController {
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);	
 	}
 	
-	@PostMapping("/update")
-	public ResponseEntity<ResponseDTO> updateEmployee(@RequestBody EmployeePayRollDTO dto){
+	@PostMapping("/update/{id}")
+	public ResponseEntity<ResponseDTO> updateEmployee(@PathVariable int id,@RequestBody EmployeePayRollDTO dto){
 		logger.debug("Inside update employee data");
-		EmployeePayrollData employeeData = employeePayService.updateEmployee(dto);
+		EmployeePayrollData employeeData = employeePayService.updateEmployee(id,dto);
 		ResponseDTO responseDTO = new ResponseDTO("Employee Updated",employeeData);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);	
 	}

@@ -18,40 +18,40 @@ import com.bridgelabz.employeepayroll.model.EmployeePayrollData;
 public class EmployeePayrollService implements IEmployeePayRollService {
 
 	public static final Logger logger = LoggerFactory.getLogger(EmployeePayrollService.class);
+	List<EmployeePayrollData> employeePayrollDatas = new ArrayList<EmployeePayrollData>();
 	AtomicLong id = new AtomicLong(0);
 	@Override
 	public List<EmployeePayrollData> getEmployeePayRollData() {
-		List<EmployeePayrollData> employeePayrollDatas = new ArrayList<EmployeePayrollData>();
-		EmployeePayrollData employeeData = null;
-		employeePayrollDatas.add(new EmployeePayrollData(id.incrementAndGet(), new EmployeePayRollDTO("Harvey", 4000L)));
 		return employeePayrollDatas;
 	
 	}
 
 	@Override
-	public EmployeePayrollData getEmployeePayRollDataById(long eId) {
+	public EmployeePayrollData getEmployeePayRollDataById(int eId) {
 		EmployeePayrollData employeeData = null;
-		employeeData = new EmployeePayrollData(id.incrementAndGet(), new EmployeePayRollDTO("Harvey", 4000L));
-		return employeeData;
+		return employeePayrollDatas.get(eId-1);
 	}
 
 	@Override
 	public EmployeePayrollData addEmployee(EmployeePayRollDTO dto) {
 		EmployeePayrollData employeeData = null;
 		employeeData = new EmployeePayrollData(id.incrementAndGet(), dto);
+		employeePayrollDatas.add(employeeData);
 		return employeeData;
 	}
 
 	@Override
-	public EmployeePayrollData updateEmployee(EmployeePayRollDTO dto) {
-		EmployeePayrollData employeeData = null;
-		employeeData = new EmployeePayrollData(id.incrementAndGet(), dto);
+	public EmployeePayrollData updateEmployee(int empId,EmployeePayRollDTO dto) {
+		EmployeePayrollData employeeData = getEmployeePayRollDataById(empId);
+		employeeData.setName(dto.getName());
+		employeeData.setSalary(dto.getSalary());
+		employeePayrollDatas.set(empId-1, employeeData);
 		return employeeData;
 	}
 
 	@Override
 	public void deleteEmployee(long id) {
-		logger.debug("Inside service delete");
+		employeePayrollDatas.remove(id);
 	}
 
 	

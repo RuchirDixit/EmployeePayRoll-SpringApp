@@ -14,11 +14,11 @@ public interface IEmployeePayRollService {
 
 	List<EmployeePayrollData> getEmployeePayRollData();
 	
-	EmployeePayrollData getEmployeePayRollDataById(long id);
+	EmployeePayrollData getEmployeePayRollDataById(int id);
 	
 	EmployeePayrollData addEmployee(EmployeePayRollDTO dto);
 	
-	EmployeePayrollData updateEmployee(EmployeePayRollDTO dto);
+	EmployeePayrollData updateEmployee(int empId,EmployeePayRollDTO dto);
 	
 	void deleteEmployee(long id);
 }
