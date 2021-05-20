@@ -1,6 +1,8 @@
 package com.bridgelabz.employeepayroll.dto;
 
-public class EmployeePayRollDTO {
+import lombok.Data;
+
+public @Data class EmployeePayRollDTO {
 
 	private String name;
 	private Long salary;
@@ -12,21 +14,5 @@ public class EmployeePayRollDTO {
 	public EmployeePayRollDTO(String name, Long salary) {
 		this.name = name;
 		this.salary = salary;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public void setSalary(Long salary) {
-		this.salary = salary;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public Long getSalary() {
-		return salary;
 	}
 }
