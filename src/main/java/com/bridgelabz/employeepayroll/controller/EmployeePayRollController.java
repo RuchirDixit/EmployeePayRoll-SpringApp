@@ -1,6 +1,9 @@
 package com.bridgelabz.employeepayroll.controller;
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,15 +46,15 @@ public class EmployeePayRollController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<ResponseDTO> addEmployee(@RequestBody EmployeePayRollDTO dto){
-		log.debug("Inside add employee data");
+	public ResponseEntity<ResponseDTO> addEmployee(@Valid @RequestBody EmployeePayRollDTO dto){
+		log.debug("To string employee DTO" + dto.toString());
 		EmployeePayrollData employeeData = employeePayService.addEmployee(dto);
 		ResponseDTO responseDTO = new ResponseDTO("Created Employee",employeeData);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);	
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<ResponseDTO> updateEmployee(@PathVariable int id,@RequestBody EmployeePayRollDTO dto){
+	public ResponseEntity<ResponseDTO> updateEmployee(@PathVariable int id,@Valid @RequestBody EmployeePayRollDTO dto){
 		log.debug("Inside update employee data");
 		EmployeePayrollData employeeData = employeePayService.updateEmployee(id,dto);
 		ResponseDTO responseDTO = new ResponseDTO("Employee Updated",employeeData);
