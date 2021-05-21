@@ -29,9 +29,11 @@ public class EmployeePayrollService implements IEmployeePayRollService {
 
 	@Override
 	public EmployeePayrollData getEmployeePayRollDataById(int eId) {
-		return employeePayrollDatas.stream().
-				filter(empData -> empData.getEmployeeID() == eId).findFirst().orElseThrow(()-> 
-				new EmployeePayRollException("Employee Not Found!"));
+		return employeePayrollDatas.stream()
+				.filter(empData -> empData.getEmployeeID() == eId)
+				.findFirst()
+				.orElseThrow(()-> 
+							new EmployeePayRollException("Employee Not Found!"));
 	}
 
 	@Override
