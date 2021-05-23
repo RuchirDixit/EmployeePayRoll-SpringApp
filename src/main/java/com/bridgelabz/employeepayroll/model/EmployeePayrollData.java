@@ -24,7 +24,7 @@ public @Data class EmployeePayrollData {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "employee_id")
-	private long employeeID;
+	private int employeeID;
 	
 	@Column(name = "name")
 	private String name;
@@ -39,14 +39,14 @@ public @Data class EmployeePayrollData {
 	@Column(name = "department")
 	private List<String> departments;
 
+	public EmployeePayrollData() {}
 	
-	public EmployeePayrollData(long id,EmployeePayRollDTO employeePayrollDto) {
-		this.employeeID = id;
+	public EmployeePayrollData(EmployeePayRollDTO employeePayrollDto) {
 		this.updateEmployeePayRollData(employeePayrollDto);
 	}
 
 
-	private void updateEmployeePayRollData(EmployeePayRollDTO employeePayrollDto) {
+	public void updateEmployeePayRollData(EmployeePayRollDTO employeePayrollDto) {
 		this.name = employeePayrollDto.getName();
 		this.salary = employeePayrollDto.getSalary();
 		this.gender = employeePayrollDto.getGender();

@@ -62,7 +62,7 @@ public class EmployeePayRollController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<ResponseDTO> deleteEmployee(@PathVariable long id){
+	public ResponseEntity<ResponseDTO> deleteEmployee(@PathVariable int id){
 		log.debug("Inside delete employee data");
 		employeePayService.deleteEmployee(id);
 		ResponseDTO responseDTO = new ResponseDTO("Employee Deleted","Deleted id : " + id);
